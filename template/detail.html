@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>News</h1>
+    <img src="{{ one.rasm.url }}" alt="">
+    <h2>{{one.title}}</h2>
+    <h2>{{one.text}}</h2>
+    <span>{{one.muallif}} | {{one.created}}</span>
+    <hr>
+    <h1>Comment yaratish</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ com.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <h1>comments</h1>
+    {% for i in one.comments.all %}
+    <h3>{{i.izoh}}</h3>
+    <h3>{{i.user.username}}</h3>
+    <h3>{{i.created}}</h3>
+    <hr>
+    {% endfor %}    
+
+</body>
+</html>
