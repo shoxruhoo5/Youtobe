@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import *
+from django.contrib.auth import authenticate,login
 
 def home(request):
     r = News.objects.all()
@@ -70,3 +71,15 @@ def news(request):
             return redirect('home')
     return render(request,'create.html',{'form':form})
 
+def Login(request):
+    form = loginForm()
+    if request.POST:
+        form = loginForm(request.POST)
+        if form.is_valid():
+            a = request.POST["username"]
+            b = request.POST["password"]
+            f = authenticate(request, username=a,password=b)
+            if f is not None:
+                login(request, f)
+                return redirect("home")
+    return render(request,"login.html", {"form":form})

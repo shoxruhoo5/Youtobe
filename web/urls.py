@@ -26,6 +26,7 @@ urlpatterns = [
     path("create/",category, name='category'),
     path('user/', user, name='user'),
     path('news/', news, name = 'news'),
-    path('detail/<int:id>/', detail, name='detail')
+    path('detail/<int:id>/', detail, name='detail'),
+    path('login/', Login, name='login')
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
